@@ -1,5 +1,3 @@
-# For reference: https://towardsdatascience.com/web-scraping-a-less-brief-overview-of-scrapy-and-selenium-part-ii-3ad290ce7ba1
-
 from time import sleep
 
 import scrapy
@@ -31,7 +29,7 @@ class FairfaxSpider(scrapy.Spider):
         options.add_argument("--no-sandbox") 		
         caps = options.to_capabilities()
         streetName = str(input('Please type in street: '))
-        self.driver = webdriver.Chrome('/Users/DanCassin/Development/scrapy_projects/chromedriver')
+        self.driver = webdriver.Chrome('/location/of/chromedriver')
         self.driver.get('https://icare.fairfaxcounty.gov/ffxcare/search/commonsearch.aspx?mode=address')
         search_city = self.driver.find_element_by_xpath('//*[(@id = "inpStreet")]').send_keys(streetName + '\ue007')
         sleep(2)
