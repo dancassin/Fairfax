@@ -7,7 +7,7 @@ import scrapy
 
 
 class FairfaxItem(scrapy.Item):
-    # define the fields for your item here like:
+    define the fields for your item here like:
     address = scrapy.Field()
     sale_date = scrapy.Field()
     sale_amount = scrapy.Field()

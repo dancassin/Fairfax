@@ -63,8 +63,9 @@ DOWNLOADER_MIDDLEWARES = {
     # ...
 #}
     # For user agents
-    'scrapy.downloadermiddlewares.useragent.UserAgentmiddleware':none,
+    'scrapy.downloadermiddlewares.useragent.UserAgentmiddleware':None,
     'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

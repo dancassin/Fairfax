@@ -38,13 +38,11 @@ class FairfaxSpider(scrapy.Spider):
 
         page_total_selector = Selector(text = self.driver.page_source)
         total_pages = ''.join(page_total_selector.css('#ml+ b::text').extract())
-        #print(f'total pages first pass: {total_pages}')
         total_pages = int(''.join([i for i in total_pages if i.isdigit()]))
-        #print(f'total pages processed: {total_pages}')
 
         first_result = self.driver.find_element_by_css_selector('.SearchResults:nth-child(3) td:nth-child(1) div')
         first_result.click()
-        sleep(3)
+        sleep(2)
 
         while FairfaxSpider.current_page <= total_pages:
             address_selector = Selector(text = self.driver.page_source)
@@ -66,15 +64,16 @@ class FairfaxSpider(scrapy.Spider):
 
             tax_page = self.driver.find_element_by_css_selector('#sidemenu .unsel:nth-child(4) span')
             tax_page.click()
-            sleep(3)
+            sleep(2)
             tax_selector = Selector(text = self.driver.page_source)
-            general_fund_taxes = tax_selector.css('body tr:nth-child(4) td:nth-child(3)').css('::text').extract()
-            special_tax_dist = tax_selector.css('body tr:nth-child(4) td:nth-child(3)').css('::text').extract()
+            #general_fund_taxes = tax_selector.css('body tr:nth-child(4) td:nth-child(3)').css('::text').extract()
+            special_tax_dist = tax_selector.css('body tr:nth-child(4) td:nth-child(4)').css('::text').extract()
+            sleep(0.5)
 
-            # profile page at bottom so it stays as the .sel class for the next page
+            #profile page at bottom so it stays as the .sel class for the next page
             profile_page = self.driver.find_element_by_css_selector('#sidemenu .unsel:nth-child(1) span')
             profile_page.click()
-            sleep(3)
+            sleep(2)
 
             next_button = self.driver.find_element_by_css_selector('#DTLNavigator_imageNext')
             next_button.click()
